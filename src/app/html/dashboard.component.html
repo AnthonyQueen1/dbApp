@@ -1,0 +1,10 @@
+<p>list of queries:</p>
+
+<div class="grid grid-pad">
+    <div *ngFor="let q of queries" [routerLink]="['/query', q.url]" class="col-1-5">
+        <div class="module hero">
+            <h4>{{q.desc}}</h4>            
+        </div>
+        
+    </div>
+</div>

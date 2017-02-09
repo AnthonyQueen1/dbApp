@@ -1,0 +1,7 @@
+<h2>{{name}}</h2>
+<table>
+    <tr *ngFor="let row of table">
+        <td *ngFor="let col of row.values">{{ col }}</td>
+    </tr>
+</table>
+<button (click)="goBack()">Back</button>  
