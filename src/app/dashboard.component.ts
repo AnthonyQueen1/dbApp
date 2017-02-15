@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router }            from '@angular/router';
+
+import { TableService } from './table.service';
+
 
 @Component({
     moduleId: module.id,
@@ -7,7 +11,36 @@ import { Component } from '@angular/core';
     styleUrls: [ './styles/dashboard.component.css']
 })
 
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+    constructor(private tableService: TableService, private router: Router) {}
+    tablelist: String[];
+    selectedright: String;
+    selectedleft: String;
+    bothselected: boolean;
+
+    getTableList(): void {
+        this.tableService
+                .getTableList()
+                .then(tablist => this.tablelist = tablist)
+                .catch(e => console.log(e));
+    }
+
+    ngOnInit(): void {
+        this.getTableList();
+    }
+
+    onSelectRight(tab: String): void {
+        this.selectedright = tab;
+    }
+
+    onSelectLeft(tab: String): void {
+        this.selectedleft = tab;
+    }
+
+    join(): void {
+        this.router.navigate(['/query', this.selectedleft+'-join-'+this.selectedright]);
+    }
+
     queries = [
         {
             desc: "List department(s) with minimum number of employees",

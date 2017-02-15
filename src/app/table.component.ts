@@ -27,6 +27,7 @@ export class TableComponent implements OnInit {
     ngOnInit(): void {
         this.route.params
                 .switchMap((params: Params) => this.tableService.getTable(params['id']))
+                //.catch()
                 .subscribe(table => this.table = table);
     }
 }

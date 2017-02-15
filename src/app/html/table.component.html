@@ -1,7 +1,8 @@
 <h2>{{name}}</h2>
-<table>
+<table *ngIf="table">
     <tr *ngFor="let row of table">
-        <td *ngFor="let col of row.values">{{ col }}</td>
+        <td *ngFor="let col of row">{{ col }}</td>
     </tr>
 </table>
+<p *ngIf="!table">error displaying table</p>
 <button (click)="goBack()">Back</button>  

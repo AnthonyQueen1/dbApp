@@ -1,3 +1,24 @@
+<p>Select for join:</p>
+<div>
+    <div class="col-1-3">
+        <ul class="heroes">
+            <li *ngFor="let tab of tablelist" (click)="onSelectLeft(tab)" [class.selected]="tab === selectedleft">
+                <span>{{tab}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-1-3">
+        <h2>NATURAL JOIN</h2>
+        <button *ngIf="selectedleft && selectedright"(click)="join()">join</button>
+    </div>
+    <div class="col-1-3">
+        <ul class="heroes">
+            <li *ngFor="let tab of tablelist" (click)="onSelectRight(tab)" [class.selected]="tab === selectedright">
+                <span>{{tab}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
 <p>list of queries:</p>
 
 <div class="grid grid-pad">
@@ -5,6 +26,5 @@
         <div class="module hero">
             <h4>{{q.desc}}</h4>            
         </div>
-        
     </div>
 </div>
