@@ -17,12 +17,16 @@ export class DashboardComponent implements OnInit {
     selectedright: String;
     selectedleft: String;
     bothselected: boolean;
+    error_msg: String;
 
     getTableList(): void {
         this.tableService
                 .getTableList()
                 .then(tablist => this.tablelist = tablist)
-                .catch(e => console.log(e));
+                .catch(e => {
+                    console.log(e);
+                    this.error_msg = "ERROR: error loading tables";
+                });
     }
 
     ngOnInit(): void {

@@ -1,8 +1,14 @@
-<h2>{{name}}</h2>
-<table *ngIf="table">
-    <tr *ngFor="let row of table">
-        <td *ngFor="let col of row">{{ col }}</td>
-    </tr>
+<table *ngIf="table" class="pure-table">
+    <ng-container *ngFor="let row of table; let f = first; let i = index">
+        <tr *ngIf="f">
+                <th>#</th>
+                <th *ngFor="let col of row">{{ col }}</th>
+        </tr>
+        <tr *ngIf="!f">
+            <td>{{ i }}</td>
+            <td *ngFor="let col of row">{{ col }}</td>
+        </tr>
+    </ng-container>
 </table>
-<p *ngIf="!table">error displaying table</p>
+<p *ngIf="!table">loading...</p>
 <button (click)="goBack()">Back</button>  

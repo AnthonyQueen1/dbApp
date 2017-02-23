@@ -15,7 +15,6 @@ export class TableService {
 
     getTable(id: string): Promise<Tuple[]> {
         const url = `${this.tableUrl}/${id}`;
-        // return Promise.resolve(TABLE);
         this.http.get(url)
                         .toPromise()
                         .then((response) => { 
@@ -31,11 +30,22 @@ export class TableService {
 
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
-        return Promise.resolve([[""]]);
+        // return Promise.resolve([["ERROR: error retreiving data","ERROR: error retreiving data"],["ERROR: error retreiving data","ERROR: error retreiving data"]]);
+        return Promise.resolve([["ERROR: error retreiving data"]]);
+    }
+
+    private handleErrorTabList(error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject("error getting table list");
     }
 
     getTableList(): Promise<String[]> {
-        return Promise.resolve(['tab1','tab2','tab3']);
+        // return Promise.resolve(['a','b','v']);
+        const url = 'api/show-tables';
+        return this.http.get(url)
+                        .toPromise()
+                        .then(response => response.json() as String[])
+                        .catch(this.handleErrorTabList);
     }
 }
 

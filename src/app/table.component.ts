@@ -9,7 +9,8 @@ import { Tuple }        from './tuple';
 @Component({
     moduleId: module.id,
     selector: 'query-table',
-    templateUrl: './html/table.component.html'
+    templateUrl: './html/table.component.html',
+    styleUrls: [ './styles/table.component.css']
 })
 
 export class TableComponent implements OnInit {
